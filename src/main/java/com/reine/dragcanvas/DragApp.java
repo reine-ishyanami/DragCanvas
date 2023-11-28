@@ -22,5 +22,6 @@ public class DragApp extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("组件拖拽案例");
         primaryStage.show();
+        ComponentContainer.initMainStage(primaryStage);
     }
 }

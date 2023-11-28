@@ -7,4 +7,5 @@ module com.reine.dragcanvas {
     opens com.reine.dragcanvas.controller to javafx.fxml;
     exports com.reine.dragcanvas;
     exports com.reine.dragcanvas.controller to javafx.fxml;
+    exports com.reine.dragcanvas.component to javafx.fxml;
 }

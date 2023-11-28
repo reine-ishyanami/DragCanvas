@@ -6,13 +6,21 @@ import javafx.scene.shape.Circle;
 /**
  * @author reine
  */
-public class CircleType implements IShape {
+public class CircleType extends Circle implements IShape {
+
+    public CircleType() {
+        this.setRadius(10.0);
+        this.setStyle(IShape.style);
+        this.setOnDragDetected(this::onDragDetected);
+    }
+
     @Override
     public Node drawShape(double x, double y) {
-        Circle circle = new Circle(10);
+        Circle circle = new Circle(this.getRadius());
+        circle.setStyle(this.getStyle());
         circle.setTranslateX(x + 10.0);
         circle.setTranslateY(y + 10.0);
-        process(circle, "circle");
+        process(circle);
         return circle;
     }
 
