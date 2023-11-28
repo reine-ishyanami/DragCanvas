@@ -11,7 +11,7 @@
     <children>
         <Accordion >
             <panes>
-                <TitledPane text="组件" >
+                <TitledPane text="%titled-pane.name" >
                     <content>
                         <GridPane alignment="TOP_CENTER" hgap="50.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
                                   prefWidth="200.0" vgap="50.0">

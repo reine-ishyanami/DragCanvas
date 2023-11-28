@@ -21,7 +21,6 @@ public class DragController {
 
     @FXML
     void initialize() {
-
     }
 
     @FXML

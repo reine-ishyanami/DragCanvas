@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 /**
  * @author reine
@@ -16,6 +17,8 @@ public class DragApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(Objects.requireNonNull(DragApp.class.getResource("drag-view.fxml")));
+        ResourceBundle bundle = ResourceBundle.getBundle("/i18n/language");
+        fxmlLoader.setResources(bundle);
         Pane root = fxmlLoader.load();
 
         Scene scene = new Scene(root);
