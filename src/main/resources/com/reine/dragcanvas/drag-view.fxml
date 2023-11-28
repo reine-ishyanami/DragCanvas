@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Polygon?>
+<?import javafx.scene.shape.Rectangle?>
+<HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.reine.dragcanvas.controller.DragController" stylesheets="@css/drag-sample.css">
+    <children>
+        <Accordion fx:id="accordion">
+            <panes>
+                <TitledPane animated="false" text="组件">
+                    <content>
+                        <GridPane alignment="TOP_CENTER" hgap="50.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
+                                  prefWidth="200.0" vgap="50.0">
+                            <children>
+                                <Rectangle fx:id="rectangle" onDragDetected="#onMouseDragOfRectangle">
+                                    <GridPane.rowIndex>0</GridPane.rowIndex>
+                                    <GridPane.columnIndex>0</GridPane.columnIndex>
+                                </Rectangle>
+                                <Circle fx:id="circle" onDragDetected="#onMouseDragOfCircle">
+                                    <GridPane.rowIndex>0</GridPane.rowIndex>
+                                    <GridPane.columnIndex>1</GridPane.columnIndex>
+                                </Circle>
+                                <Polygon fx:id="triangle" onDragDetected="#onMouseDragOfTriangle" >
+                                    <GridPane.rowIndex>0</GridPane.rowIndex>
+                                    <GridPane.columnIndex>2</GridPane.columnIndex>
+                                </Polygon>
+                            </children>
+                        </GridPane>
+                    </content>
+                </TitledPane>
+            </panes>
+        </Accordion>
+        <AnchorPane prefHeight="600.0" prefWidth="600.0"
+                    onDragOver="#canvasDragOver"
+                    onDragDropped="#canvasDragDropped"/>
+    </children>
+</HBox>
