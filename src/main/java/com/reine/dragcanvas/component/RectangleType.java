@@ -6,12 +6,12 @@ import javafx.scene.shape.Rectangle;
 /**
  * @author reine
  */
-public class RectangleType extends Rectangle implements IShape {
+public class RectangleType extends Rectangle implements DrawableShape {
 
     public RectangleType() {
         this.setWidth(20.0);
         this.setHeight(20.0);
-        this.setStyle(IShape.style);
+        this.setStyle(DrawableShape.style);
         this.setOnDragDetected(this::onDragDetected);
     }
 

@@ -1,6 +1,6 @@
 package com.reine.dragcanvas.controller;
 
-import com.reine.dragcanvas.component.IShape;
+import com.reine.dragcanvas.component.DrawableShape;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.input.DragEvent;
@@ -31,8 +31,8 @@ public class DragController {
     @FXML
     void canvasDragDropped(DragEvent event) {
         Dragboard dragboard = event.getDragboard();
-        String content = (String) dragboard.getContent(IShape.shapeFormat);
-        IShape shapeType = IShape.of(content);
+        String content = (String) dragboard.getContent(DrawableShape.shapeFormat);
+        DrawableShape shapeType = DrawableShape.of(content);
         AnchorPane source = (AnchorPane) event.getSource();
         Node node = shapeType.drawShape(event.getX(), event.getY());
         source.getChildren().add(node);

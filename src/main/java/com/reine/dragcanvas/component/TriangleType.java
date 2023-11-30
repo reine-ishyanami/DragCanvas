@@ -6,11 +6,11 @@ import javafx.scene.shape.Polygon;
 /**
  * @author reine
  */
-public class TriangleType extends Polygon implements IShape {
+public class TriangleType extends Polygon implements DrawableShape {
 
     public TriangleType() {
         this.getPoints().addAll(0.0, Math.sqrt(3) * 10, 20.0, Math.sqrt(3) * 10, 10.0, 0.0);
-        this.setStyle(IShape.style);
+        this.setStyle(DrawableShape.style);
         this.setOnDragDetected(this::onDragDetected);
     }
 

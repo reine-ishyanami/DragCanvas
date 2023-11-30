@@ -20,7 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * @author reine
  */
-public interface IShape {
+public interface DrawableShape {
 
     DataFormat shapeFormat = new DataFormat("data/shape");
 
@@ -46,13 +46,14 @@ public interface IShape {
         setMouseAction(shape);
     }
 
-    Map<String, IShape> SHAPE_MAP = Map.of(
+    Map<String, DrawableShape> SHAPE_MAP = Map.of(
             "RectangleType", new RectangleType(),
             "CircleType", new CircleType(),
-            "TriangleType", new TriangleType()
+            "TriangleType", new TriangleType(),
+            "StarType", new StarType()
     );
 
-    static IShape of(String shapeName) {
+    static DrawableShape of(String shapeName) {
         return SHAPE_MAP.get(shapeName);
     }
 
@@ -132,7 +133,7 @@ public interface IShape {
         shape.snapshot(new SnapshotParameters(), image);
         dragboard.setDragView(image);
         ClipboardContent content = new ClipboardContent();
-        content.put(IShape.shapeFormat, this.getClass().getSimpleName());
+        content.put(DrawableShape.shapeFormat, this.getClass().getSimpleName());
         dragboard.setContent(content);
     }
 }

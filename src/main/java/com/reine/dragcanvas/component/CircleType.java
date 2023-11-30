@@ -6,11 +6,11 @@ import javafx.scene.shape.Circle;
 /**
  * @author reine
  */
-public class CircleType extends Circle implements IShape {
+public class CircleType extends Circle implements DrawableShape {
 
     public CircleType() {
         this.setRadius(10.0);
-        this.setStyle(IShape.style);
+        this.setStyle(DrawableShape.style);
         this.setOnDragDetected(this::onDragDetected);
     }
 

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.*?>
+<?import com.reine.dragcanvas.component.StarType?>
 <HBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.reine.dragcanvas.controller.DragController" stylesheets="@css/drag-sample.css">
     <children>
@@ -14,7 +15,7 @@
                 <TitledPane text="%titled-pane.name" >
                     <content>
                         <GridPane alignment="TOP_CENTER" hgap="50.0" minHeight="0.0" minWidth="0.0" prefHeight="180.0"
-                                  prefWidth="200.0" vgap="50.0">
+                                  prefWidth="200.0" vgap="30.0">
                             <children>
                                 <RectangleType>
                                     <GridPane.rowIndex>0</GridPane.rowIndex>
@@ -28,6 +29,10 @@
                                     <GridPane.rowIndex>0</GridPane.rowIndex>
                                     <GridPane.columnIndex>2</GridPane.columnIndex>
                                 </TriangleType>
+                                <StarType>
+                                    <GridPane.rowIndex>1</GridPane.rowIndex>
+                                    <GridPane.columnIndex>0</GridPane.columnIndex>
+                                </StarType>
                             </children>
                         </GridPane>
                     </content>
