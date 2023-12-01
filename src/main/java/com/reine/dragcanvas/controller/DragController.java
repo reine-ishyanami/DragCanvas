@@ -21,6 +21,7 @@ public class DragController {
 
     @FXML
     void initialize() {
+        DrawableShape.fillShapeMap();
     }
 
     @FXML

@@ -1,7 +1,10 @@
 package com.reine.dragcanvas.component;
 
 import com.reine.dragcanvas.ComponentContainer;
+import com.reine.dragcanvas.utils.ClassScanner;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.ColorPicker;
@@ -13,8 +16,13 @@ import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URL;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.function.Predicate;
 
 
 /**
@@ -46,12 +54,22 @@ public interface DrawableShape {
         setMouseAction(shape);
     }
 
-    Map<String, DrawableShape> SHAPE_MAP = Map.of(
-            "RectangleType", new RectangleType(),
-            "CircleType", new CircleType(),
-            "TriangleType", new TriangleType(),
-            "StarType", new StarType()
-    );
+    Map<String, DrawableShape> SHAPE_MAP = new HashMap<>();
+
+    static void fillShapeMap() {
+        try {
+            String packName = DrawableShape.class.getPackage().getName();
+            Set<Class<?>> classes = ClassScanner.getClasses(packName);
+            for (Class<?> aClass : classes) {
+                if (Arrays.asList(aClass.getInterfaces()).contains(DrawableShape.class)) {
+                    SHAPE_MAP.put(aClass.getSimpleName(), (DrawableShape) aClass.getDeclaredConstructor().newInstance());
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     static DrawableShape of(String shapeName) {
         return SHAPE_MAP.get(shapeName);
@@ -62,10 +80,14 @@ public interface DrawableShape {
      */
     default void onMouseClick(MouseEvent event) {
         Shape shape = (Shape) event.getSource();
+        AnchorPane canvas = (AnchorPane) shape.getParent();
+        ObservableList<Node> children = canvas.getChildren();
+        // 将选中的节点移到最上层
+        children.remove(shape);
+        children.add(shape);
         // 右键双击删除
         if (event.getClickCount() == 2 && event.getButton().equals(MouseButton.SECONDARY)) {
-            AnchorPane canvas = (AnchorPane) shape.getParent();
-            canvas.getChildren().remove(shape);
+            children.remove(shape);
             return;
         }
         // 左键双击更改颜色
